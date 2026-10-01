@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falling Word Typing Game</title>
 
-
     <style>
-
         /* ================================
            BASIC RESET
         ================================= */
@@ -24,316 +14,186 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
+            font-family: Arial, Helvetica, sans-serif;
             background: #111827;
-
             color: white;
-
             overflow: hidden;
         }
-
 
         /* ================================
            TOP BAR
         ================================= */
 
         #topBar {
-
             height: 70px;
-
             display: flex;
-
             justify-content: space-around;
-
             align-items: center;
-
             background: #1f2937;
-
             font-size: 20px;
-
             font-weight: bold;
-
             border-bottom: 2px solid #374151;
         }
 
-
         #topBar div {
-
             min-width: 100px;
-
             text-align: center;
         }
-
 
         /* ================================
            GAME AREA
         ================================= */
 
         #gameArea {
-
             position: relative;
-
-            height:
-                calc(100vh - 70px);
-
+            height: calc(100vh - 70px);
             overflow: hidden;
-
-            border-bottom:
-                5px solid #ef4444;
+            border-bottom: 5px solid #ef4444;
         }
-
 
         /* ================================
            FALLING WORD
         ================================= */
 
         .word {
-
             position: absolute;
-
             top: 0;
-
-            padding:
-                8px 14px;
-
+            padding: 8px 14px;
             background: #2563eb;
-
             border-radius: 8px;
-
             font-size: 22px;
-
             font-weight: bold;
-
             user-select: none;
-
             white-space: nowrap;
-
-            box-shadow:
-                0 4px 10px
-                rgba(0, 0, 0, 0.3);
-
-            transition:
-                transform 0.1s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.1s;
         }
-
 
         .word:hover {
-
-            transform:
-                scale(1.05);
+            transform: scale(1.05);
         }
-
 
         /* ================================
            INPUT AREA
         ================================= */
 
         #inputContainer {
-
             position: absolute;
-
             bottom: 30px;
-
             left: 50%;
-
-            transform:
-                translateX(-50%);
-
+            transform: translateX(-50%);
             z-index: 100;
         }
 
-
         #wordInput {
-
             width: 350px;
-
             max-width: 80vw;
-
             padding: 15px;
-
             font-size: 22px;
-
             text-align: center;
-
-            border:
-                3px solid #2563eb;
-
+            border: 3px solid #2563eb;
             border-radius: 10px;
-
             outline: none;
-
             background: white;
-
             color: #111827;
         }
 
-
         #wordInput:focus {
-
-            border-color:
-                #22c55e;
+            border-color: #22c55e;
         }
-
 
         /* ================================
            OVERLAY
         ================================= */
 
         #overlay {
-
             position: fixed;
-
             inset: 0;
-
-            background:
-                rgba(0, 0, 0, 0.88);
-
+            background: rgba(0, 0, 0, 0.88);
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
             z-index: 200;
-
             text-align: center;
-
             padding: 20px;
         }
 
-
         #overlay h1 {
-
             font-size: 52px;
-
-            margin:
-                0 0 15px;
+            margin: 0 0 15px;
         }
-
 
         #overlay p {
-
             font-size: 20px;
-
             margin-bottom: 30px;
-
             color: #d1d5db;
         }
-
 
         /* ================================
            BUTTON
         ================================= */
 
         button {
-
-            padding:
-                14px 32px;
-
+            padding: 14px 32px;
             font-size: 20px;
-
             font-weight: bold;
-
             border: none;
-
             border-radius: 8px;
-
             background: #22c55e;
-
             color: white;
-
             cursor: pointer;
-
-            transition:
-                transform 0.1s,
-                background 0.2s;
+            transition: transform 0.1s, background 0.2s;
         }
-
 
         button:hover {
-
-            background:
-                #16a34a;
-
-            transform:
-                scale(1.05);
+            background: #16a34a;
+            transform: scale(1.05);
         }
-
 
         /* ================================
            HIDDEN
         ================================= */
 
         .hidden {
-
             display: none !important;
         }
-
 
         /* ================================
            RESPONSIVE
         ================================= */
 
         @media (max-width: 600px) {
-
             #topBar {
-
                 height: 60px;
-
                 font-size: 16px;
             }
 
-
             #gameArea {
-
-                height:
-                    calc(100vh - 60px);
+                height: calc(100vh - 60px);
             }
-
 
             .word {
-
                 font-size: 17px;
-
-                padding:
-                    6px 10px;
+                padding: 6px 10px;
             }
 
-
             #wordInput {
-
                 width: 280px;
-
                 font-size: 18px;
-
                 padding: 12px;
             }
 
-
             #overlay h1 {
-
                 font-size: 38px;
             }
         }
-
     </style>
-
 </head>
 
-
 <body>
-
 
     <!-- =================================
          TOP INFORMATION BAR
@@ -346,18 +206,15 @@
             <span id="score">0</span>
         </div>
 
-
         <div>
             Lives:
             <span id="lives">3</span>
         </div>
 
-
         <div>
             Level:
             <span id="level">1</span>
         </div>
-
 
         <div>
             Best:
@@ -367,16 +224,13 @@
     </div>
 
 
-
     <!-- =================================
          GAME AREA
     ================================== -->
 
     <div id="gameArea">
 
-
         <!-- Typing input -->
-
         <div id="inputContainer">
 
             <input
@@ -389,9 +243,7 @@
 
         </div>
 
-
     </div>
-
 
 
     <!-- =================================
@@ -400,46 +252,31 @@
 
     <div id="overlay">
 
-
         <h1 id="overlayTitle">
             Falling Words
         </h1>
 
-
         <p id="overlayMessage">
-
-            Type the falling words before
-            they reach the bottom!
-
+            Type the falling words before they reach the bottom!
         </p>
-
 
         <button id="startButton">
             Start Game
         </button>
 
-
     </div>
 
 
-
     <script>
-
 
         // =================================
         // WORD LISTS
         // =================================
 
-
         const wordLists = {
 
-
-            // -----------------------------
             // LEVEL 1
-            // -----------------------------
-
             1: [
-
                 "cat",
                 "dog",
                 "sun",
@@ -470,16 +307,10 @@
                 "food",
                 "rain",
                 "wind"
-
             ],
 
-
-            // -----------------------------
             // LEVEL 2
-            // -----------------------------
-
             2: [
-
                 "apple",
                 "house",
                 "mouse",
@@ -510,16 +341,10 @@
                 "keyboard",
                 "camera",
                 "mobile"
-
             ],
 
-
-            // -----------------------------
             // LEVEL 3
-            // -----------------------------
-
             3: [
-
                 "banana",
                 "orange",
                 "coding",
@@ -550,16 +375,10 @@
                 "profile",
                 "storage",
                 "response"
-
             ],
 
-
-            // -----------------------------
             // LEVEL 4
-            // -----------------------------
-
             4: [
-
                 "javascript",
                 "developer",
                 "automation",
@@ -590,16 +409,10 @@
                 "programming",
                 "technology",
                 "application"
-
             ],
 
-
-            // -----------------------------
             // LEVEL 5
-            // -----------------------------
-
             5: [
-
                 "programming",
                 "application",
                 "configuration",
@@ -630,16 +443,10 @@
                 "international",
                 "information",
                 "engineering"
-
             ],
 
-
-            // -----------------------------
             // LEVEL 6
-            // -----------------------------
-
             6: [
-
                 "microservices",
                 "authentication",
                 "authorization",
@@ -670,9 +477,7 @@
                 "maintainability",
                 "scalability",
                 "configuration"
-
             ]
-
         };
 
 
@@ -680,25 +485,17 @@
         // GAME VARIABLES
         // =================================
 
-
         let score = 0;
-
         let lives = 3;
-
         let level = 1;
-
         let speed = 1;
 
         let gameRunning = false;
 
         let spawnInterval = null;
-
         let gameLoop = null;
 
         let previousWord = "";
-
-
-        // Maximum words allowed on screen
 
         const MAX_WORDS = 8;
 
@@ -707,71 +504,40 @@
         // HTML ELEMENTS
         // =================================
 
-
         const gameArea =
-            document.getElementById(
-                "gameArea"
-            );
-
+            document.getElementById("gameArea");
 
         const wordInput =
-            document.getElementById(
-                "wordInput"
-            );
-
+            document.getElementById("wordInput");
 
         const scoreDisplay =
-            document.getElementById(
-                "score"
-            );
-
+            document.getElementById("score");
 
         const livesDisplay =
-            document.getElementById(
-                "lives"
-            );
-
+            document.getElementById("lives");
 
         const levelDisplay =
-            document.getElementById(
-                "level"
-            );
-
+            document.getElementById("level");
 
         const bestScoreDisplay =
-            document.getElementById(
-                "bestScore"
-            );
-
+            document.getElementById("bestScore");
 
         const overlay =
-            document.getElementById(
-                "overlay"
-            );
-
+            document.getElementById("overlay");
 
         const overlayTitle =
-            document.getElementById(
-                "overlayTitle"
-            );
-
+            document.getElementById("overlayTitle");
 
         const overlayMessage =
-            document.getElementById(
-                "overlayMessage"
-            );
-
+            document.getElementById("overlayMessage");
 
         const startButton =
-            document.getElementById(
-                "startButton"
-            );
+            document.getElementById("startButton");
 
 
         // =================================
         // BEST SCORE
         // =================================
-
 
         let bestScore =
             Number(
@@ -779,7 +545,6 @@
                     "fallingWordBestScore"
                 )
             ) || 0;
-
 
         bestScoreDisplay.textContent =
             bestScore;
@@ -789,49 +554,25 @@
         // START GAME
         // =================================
 
-
         function startGame() {
 
-
-            // Reset game
-
             score = 0;
-
             lives = 3;
-
             level = 1;
-
             speed = 1;
-
             previousWord = "";
 
             gameRunning = true;
 
+            clearInterval(spawnInterval);
 
-            // Clear old timers
-
-            clearInterval(
-                spawnInterval
-            );
-
-
-            cancelAnimationFrame(
-                gameLoop
-            );
-
-
-            // Remove old words
+            cancelAnimationFrame(gameLoop);
 
             document
                 .querySelectorAll(".word")
                 .forEach(word => {
-
                     word.remove();
-
                 });
-
-
-            // Update UI
 
             scoreDisplay.textContent =
                 score;
@@ -842,25 +583,11 @@
             levelDisplay.textContent =
                 level;
 
-
-            // Hide overlay
-
-            overlay.classList.add(
-                "hidden"
-            );
-
-
-            // Clear input
+            overlay.classList.add("hidden");
 
             wordInput.value = "";
 
-
-            // Focus input
-
             wordInput.focus();
-
-
-            // Start spawning
 
             spawnInterval =
                 setInterval(
@@ -868,14 +595,10 @@
                     getSpawnTime()
                 );
 
-
-            // Start game loop
-
             gameLoop =
                 requestAnimationFrame(
                     updateGame
                 );
-
         }
 
 
@@ -883,27 +606,15 @@
         // RANDOM WORD
         // =================================
 
-
         function getRandomWord() {
 
-
-            // Maximum difficulty = 6
-
             const difficulty =
-                Math.min(
-                    level,
-                    6
-                );
-
+                Math.min(level, 6);
 
             const currentList =
                 wordLists[difficulty];
 
-
             let selectedWord;
-
-
-            // Avoid immediate duplicate
 
             do {
 
@@ -913,27 +624,18 @@
                         currentList.length
                     );
 
-
                 selectedWord =
                     currentList[randomIndex];
 
-
             } while (
-
-                selectedWord ===
-                previousWord &&
-
+                selectedWord === previousWord &&
                 currentList.length > 1
-
             );
-
 
             previousWord =
                 selectedWord;
 
-
             return selectedWord;
-
         }
 
 
@@ -941,25 +643,17 @@
         // SPAWN WORDS
         // =================================
 
-
         function spawnWords() {
-
 
             if (!gameRunning) {
                 return;
             }
 
-
-            // Number of words increases
-            // as level increases
-
             const wordCount =
                 Math.min(
-                    1 +
-                    Math.floor(level / 2),
+                    1 + Math.floor(level / 2),
                     4
                 );
-
 
             for (
                 let i = 0;
@@ -967,26 +661,17 @@
                 i++
             ) {
 
-
                 setTimeout(
                     () => {
 
-                        if (
-                            gameRunning
-                        ) {
-
+                        if (gameRunning) {
                             createWord();
-
                         }
 
                     },
-
                     i * 150
-
                 );
-
             }
-
         }
 
 
@@ -994,68 +679,40 @@
         // CREATE WORD
         // =================================
 
-
         function createWord() {
-
 
             if (!gameRunning) {
                 return;
             }
 
-
-            // Prevent too many words
-
             const currentWordCount =
                 document
-                    .querySelectorAll(
-                        ".word"
-                    )
+                    .querySelectorAll(".word")
                     .length;
-
 
             if (
                 currentWordCount >=
                 MAX_WORDS
             ) {
-
                 return;
-
             }
 
-
-            // Create element
-
             const word =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
-
-            word.classList.add(
-                "word"
-            );
-
-
-            // Random word
+            word.classList.add("word");
 
             word.textContent =
                 getRandomWord();
 
-
-            // Find position
-
             const maxX =
                 Math.max(
                     20,
-                    gameArea.clientWidth -
-                    200
+                    gameArea.clientWidth - 200
                 );
 
-
             let randomX;
-
             let attempts = 0;
-
 
             do {
 
@@ -1063,38 +720,19 @@
                     Math.random() *
                     maxX;
 
-
                 attempts++;
 
-
             } while (
-
-                isPositionTooClose(
-                    randomX
-                ) &&
-
+                isPositionTooClose(randomX) &&
                 attempts < 10
-
             );
-
-
-            // Set horizontal position
 
             word.style.left =
                 randomX + "px";
 
-
-            // Set vertical position
-
             word.dataset.y = "0";
 
-
-            // Add to game
-
-            gameArea.appendChild(
-                word
-            );
-
+            gameArea.appendChild(word);
         }
 
 
@@ -1102,46 +740,30 @@
         // CHECK WORD POSITION
         // =================================
 
-
-        function isPositionTooClose(
-            newX
-        ) {
-
+        function isPositionTooClose(newX) {
 
             const existingWords =
-                document.querySelectorAll(
-                    ".word"
-                );
-
+                document.querySelectorAll(".word");
 
             for (
-                const word
-                of existingWords
+                const word of existingWords
             ) {
-
 
                 const existingX =
                     parseFloat(
                         word.style.left
                     );
 
-
                 if (
                     Math.abs(
-                        newX -
-                        existingX
+                        newX - existingX
                     ) < 130
                 ) {
-
                     return true;
-
                 }
-
             }
 
-
             return false;
-
         }
 
 
@@ -1149,75 +771,48 @@
         // GAME LOOP
         // =================================
 
-
         function updateGame() {
-
 
             if (!gameRunning) {
                 return;
             }
 
-
             const fallingWords =
-                document.querySelectorAll(
-                    ".word"
-                );
+                document.querySelectorAll(".word");
 
+            fallingWords.forEach(word => {
 
-            fallingWords.forEach(
-                word => {
+                let y =
+                    parseFloat(
+                        word.dataset.y
+                    );
 
+                y += speed;
 
-                    let y =
-                        parseFloat(
-                            word.dataset.y
-                        );
+                word.dataset.y =
+                    y;
 
+                word.style.top =
+                    y + "px";
 
-                    // Move downward
+                const bottomLimit =
+                    gameArea.clientHeight - 100;
 
-                    y += speed;
+                if (
+                    y > bottomLimit
+                ) {
 
+                    word.remove();
 
-                    word.dataset.y =
-                        y;
-
-
-                    word.style.top =
-                        y + "px";
-
-
-                    // Bottom boundary
-
-                    const bottomLimit =
-                        gameArea.clientHeight -
-                        100;
-
-
-                    if (
-                        y >
-                        bottomLimit
-                    ) {
-
-
-                        word.remove();
-
-
-                        loseLife();
-
-                    }
-
+                    loseLife();
                 }
-            );
 
-
-            // Continue animation
+            });
 
             gameLoop =
                 requestAnimationFrame(
                     updateGame
                 );
-
         }
 
 
@@ -1225,82 +820,49 @@
         // INPUT / TYPING
         // =================================
 
-
         wordInput.addEventListener(
             "input",
             function () {
 
-
                 if (!gameRunning) {
                     return;
                 }
-
 
                 const typedWord =
                     wordInput.value
                         .trim()
                         .toLowerCase();
 
-
-                if (
-                    typedWord === ""
-                ) {
-
+                if (typedWord === "") {
                     return;
-
                 }
 
-
                 const fallingWords =
-                    document.querySelectorAll(
-                        ".word"
-                    );
+                    document.querySelectorAll(".word");
 
+                fallingWords.forEach(word => {
 
-                fallingWords.forEach(
-                    word => {
+                    const currentWord =
+                        word.textContent
+                            .toLowerCase();
 
+                    if (
+                        typedWord === currentWord
+                    ) {
 
-                        const currentWord =
-                            word.textContent
-                                .toLowerCase();
+                        word.remove();
 
+                        score += 10;
 
-                        if (
-                            typedWord ===
-                            currentWord
-                        ) {
+                        scoreDisplay.textContent =
+                            score;
 
+                        wordInput.value = "";
 
-                            // Remove word
-
-                            word.remove();
-
-
-                            // Add score
-
-                            score += 10;
-
-
-                            scoreDisplay
-                                .textContent =
-                                score;
-
-
-                            // Clear input
-
-                            wordInput.value =
-                                "";
-
-
-                            // Level check
-
-                            increaseLevel();
-
-                        }
-
+                        increaseLevel();
                     }
-                );
+
+                });
 
             }
         );
@@ -1310,31 +872,20 @@
         // LOSE LIFE
         // =================================
 
-
         function loseLife() {
-
 
             if (!gameRunning) {
                 return;
             }
 
-
             lives--;
 
-
-            livesDisplay
-                .textContent =
+            livesDisplay.textContent =
                 lives;
 
-
-            if (
-                lives <= 0
-            ) {
-
+            if (lives <= 0) {
                 gameOver();
-
             }
-
         }
 
 
@@ -1342,50 +893,33 @@
         // LEVEL SYSTEM
         // =================================
 
-
         function increaseLevel() {
 
-
             const newLevel =
-                Math.floor(
-                    score / 50
-                ) + 1;
-
+                Math.floor(score / 50) + 1;
 
             if (
                 newLevel > level
             ) {
 
-
                 level =
                     newLevel;
 
-
-                levelDisplay
-                    .textContent =
+                levelDisplay.textContent =
                     level;
 
-
-                // Increase speed
-
                 speed += 0.5;
-
-
-                // Restart spawning
 
                 clearInterval(
                     spawnInterval
                 );
-
 
                 spawnInterval =
                     setInterval(
                         spawnWords,
                         getSpawnTime()
                     );
-
             }
-
         }
 
 
@@ -1393,25 +927,17 @@
         // SPAWN SPEED
         // =================================
 
-
         function getSpawnTime() {
 
-
-            const baseTime =
-                1500;
-
+            const baseTime = 1500;
 
             const reduction =
-                (level - 1) *
-                150;
-
+                (level - 1) * 150;
 
             return Math.max(
                 500,
-                baseTime -
-                reduction
+                baseTime - reduction
             );
-
         }
 
 
@@ -1419,76 +945,52 @@
         // GAME OVER
         // =================================
 
-
         function gameOver() {
 
-
-            gameRunning =
-                false;
-
-
-            // Stop timers
+            gameRunning = false;
 
             clearInterval(
                 spawnInterval
             );
 
-
             cancelAnimationFrame(
                 gameLoop
             );
 
-
-            // Update best score
-
             if (
-                score >
-                bestScore
+                score > bestScore
             ) {
-
 
                 bestScore =
                     score;
-
 
                 localStorage.setItem(
                     "fallingWordBestScore",
                     bestScore
                 );
 
-
-                bestScoreDisplay
-                    .textContent =
+                bestScoreDisplay.textContent =
                     bestScore;
-
             }
-
-
-            // Game Over screen
 
             overlayTitle.textContent =
                 "Game Over";
 
-
             overlayMessage.textContent =
                 `Score: ${score} | Best: ${bestScore}`;
-
 
             startButton.textContent =
                 "Play Again";
 
-
             overlay.classList.remove(
                 "hidden"
             );
-
         }
 
 
         // =================================
         // START BUTTON
         // =================================
-
 
         startButton.addEventListener(
             "click",
@@ -1500,562 +1002,21 @@
         // ENTER KEY TO START
         // =================================
 
-
         document.addEventListener(
             "keydown",
             function(event) {
 
-
                 if (
-                    event.key ===
-                    "Enter" &&
-
+                    event.key === "Enter" &&
                     !gameRunning
                 ) {
 
                     startGame();
-
                 }
-
             }
         );
 
-
-    </script>
-
-</body>
-
-</html>
-```
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Falling Word Typing Game</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111827;
-            color: white;
-            overflow: hidden;
-        }
-
-        /* Top information bar */
-        #topBar {
-            height: 70px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background: #1f2937;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* Game area */
-        #gameArea {
-            position: relative;
-            height: calc(100vh - 70px);
-            overflow: hidden;
-            border-bottom: 5px solid #ef4444;
-        }
-
-        /* Falling word */
-        .word {
-            position: absolute;
-            top: 0;
-            padding: 8px 14px;
-            background: #2563eb;
-            border-radius: 8px;
-            font-size: 22px;
-            font-weight: bold;
-            user-select: none;
-        }
-
-        /* Typing box */
-        #inputContainer {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-        }
-
-        #wordInput {
-            width: 350px;
-            padding: 15px;
-            font-size: 22px;
-            text-align: center;
-            border: 3px solid #2563eb;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        #wordInput:focus {
-            border-color: #22c55e;
-        }
-
-        /* Start/Game Over screen */
-        #overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            z-index: 200;
-        }
-
-        #overlay h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        #overlay p {
-            font-size: 20px;
-        }
-
-        button {
-            padding: 14px 30px;
-            font-size: 20px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            background: #22c55e;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #16a34a;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- Information -->
-    <div id="topBar">
-        <div>Score: <span id="score">0</span></div>
-
-        <div>Lives: <span id="lives">3</span></div>
-
-        <div>Level: <span id="level">1</span></div>
-    </div>
-
-
-    <!-- Game -->
-    <div id="gameArea">
-
-        <!-- Typing input -->
-        <div id="inputContainer">
-            <input
-                type="text"
-                id="wordInput"
-                placeholder="Type the falling word..."
-                autocomplete="off"
-            >
-        </div>
-
-    </div>
-
-
-    <!-- Start / Game Over -->
-    <div id="overlay">
-
-        <h1 id="overlayTitle">
-            Falling Words
-        </h1>
-
-        <p id="overlayMessage">
-            Type the falling words before they reach the bottom!
-        </p>
-
-        <button id="startButton">
-            Start Game
-        </button>
-
-    </div>
-
-
-    <script>
-
-        // ================================
-        // GAME SETTINGS
-        // ================================
-
-        const words = [
-            "apple",
-            "banana",
-            "orange",
-            "computer",
-            "javascript",
-            "keyboard",
-            "testing",
-            "quality",
-            "developer",
-            "browser",
-            "website",
-            "coding",
-            "program",
-            "software",
-            "automation",
-            "playwright",
-            "function",
-            "variable",
-            "testing",
-            "frontend"
-        ];
-
-
-        // ================================
-        // GAME VARIABLES
-        // ================================
-
-        let score = 0;
-
-        let lives = 3;
-
-        let level = 1;
-
-        let speed = 1;
-
-        let gameRunning = false;
-
-        let spawnInterval;
-
-        let gameLoop;
-
-
-        // ================================
-        // HTML ELEMENTS
-        // ================================
-
-        const gameArea = document.getElementById("gameArea");
-
-        const wordInput = document.getElementById("wordInput");
-
-        const scoreDisplay = document.getElementById("score");
-
-        const livesDisplay = document.getElementById("lives");
-
-        const levelDisplay = document.getElementById("level");
-
-        const overlay = document.getElementById("overlay");
-
-        const overlayTitle = document.getElementById("overlayTitle");
-
-        const overlayMessage = document.getElementById("overlayMessage");
-
-        const startButton = document.getElementById("startButton");
-
-
-        // ================================
-        // START GAME
-        // ================================
-
-        function startGame() {
-
-            // Reset values
-            score = 0;
-
-            lives = 3;
-
-            level = 1;
-
-            speed = 1;
-
-            gameRunning = true;
-
-
-            // Update UI
-            scoreDisplay.textContent = score;
-
-            livesDisplay.textContent = lives;
-
-            levelDisplay.textContent = level;
-
-
-            // Remove old words
-            document.querySelectorAll(".word").forEach(word => {
-                word.remove();
-            });
-
-
-            // Hide overlay
-            overlay.classList.add("hidden");
-
-
-            // Clear input
-            wordInput.value = "";
-
-            wordInput.focus();
-
-
-            // Start creating words
-            spawnInterval = setInterval(createWord, 1200);
-
-
-            // Start game loop
-            gameLoop = requestAnimationFrame(updateGame);
-        }
-
-
-        // ================================
-        // CREATE FALLING WORD
-        // ================================
-
-        function createWord() {
-
-            if (!gameRunning) {
-                return;
-            }
-
-
-            const word = document.createElement("div");
-
-            word.classList.add("word");
-
-
-            // Pick random word
-            const randomIndex =
-                Math.floor(Math.random() * words.length);
-
-            word.textContent = words[randomIndex];
-
-
-            // Random horizontal position
-            const maxX =
-                gameArea.clientWidth - 150;
-
-            const randomX =
-                Math.random() * maxX;
-
-
-            word.style.left = randomX + "px";
-
-
-            // Store falling position
-            word.dataset.y = "0";
-
-
-            gameArea.appendChild(word);
-        }
-
-
-        // ================================
-        // GAME LOOP
-        // ================================
-
-        function updateGame() {
-
-            if (!gameRunning) {
-                return;
-            }
-
-
-            const fallingWords =
-                document.querySelectorAll(".word");
-
-
-            fallingWords.forEach(word => {
-
-                let y =
-                    parseFloat(word.dataset.y);
-
-
-                // Move word down
-                y += speed;
-
-
-                word.dataset.y = y;
-
-                word.style.top = y + "px";
-
-
-                // Check if word reached bottom
-                const bottomLimit =
-                    gameArea.clientHeight - 100;
-
-
-                if (y > bottomLimit) {
-
-                    word.remove();
-
-                    loseLife();
-
-                }
-
-            });
-
-
-            gameLoop =
-                requestAnimationFrame(updateGame);
-        }
-
-
-        // ================================
-        // CHECK TYPED WORD
-        // ================================
-
-        wordInput.addEventListener("input", function () {
-
-            const typedWord =
-                wordInput.value.trim().toLowerCase();
-
-
-            if (typedWord === "") {
-                return;
-            }
-
-
-            const fallingWords =
-                document.querySelectorAll(".word");
-
-
-            fallingWords.forEach(word => {
-
-                const currentWord =
-                    word.textContent.toLowerCase();
-
-
-                if (typedWord === currentWord) {
-
-                    // Remove matching word
-                    word.remove();
-
-
-                    // Increase score
-                    score += 10;
-
-                    scoreDisplay.textContent = score;
-
-
-                    // Clear input
-                    wordInput.value = "";
-
-
-                    // Check level
-                    increaseLevel();
-
-                }
-
-            });
-
-        });
-
-
-        // ================================
-        // LOSE LIFE
-        // ================================
-
-        function loseLife() {
-
-            lives--;
-
-            livesDisplay.textContent = lives;
-
-
-            if (lives <= 0) {
-
-                gameOver();
-
-            }
-
-        }
-
-
-        // ================================
-        // LEVEL SYSTEM
-        // ================================
-
-        function increaseLevel() {
-
-            const newLevel =
-                Math.floor(score / 50) + 1;
-
-
-            if (newLevel > level) {
-
-                level = newLevel;
-
-                levelDisplay.textContent = level;
-
-
-                // Increase falling speed
-                speed += 0.5;
-
-
-                // Make words spawn faster
-                clearInterval(spawnInterval);
-
-
-                const newSpawnTime =
-                    Math.max(400, 1200 - (level - 1) * 100);
-
-
-                spawnInterval =
-                    setInterval(createWord, newSpawnTime);
-
-            }
-
-        }
-
-
-        // ================================
-        // GAME OVER
-        // ================================
-
-        function gameOver() {
-
-            gameRunning = false;
-
-
-            clearInterval(spawnInterval);
-
-            cancelAnimationFrame(gameLoop);
-
-
-            overlayTitle.textContent =
-                "Game Over";
-
-
-            overlayMessage.textContent =
-                `Your score: ${score}`;
-
-
-            startButton.textContent =
-                "Play Again";
-
-
-            overlay.classList.remove("hidden");
-
-        }
-
-
-        // ================================
-        // START BUTTON
-        // ================================
-
-        startButton.addEventListener("click", startGame);
-
     </script>
 
 </body>
 </html>
->>>>>>> f64d2f1864557af38f6b640ffd616b5ee63ea2c6
